@@ -1,7 +1,7 @@
 # FakeBook React Frontend Learning Plan
 
 ## Technology Chosen
-React
+React + Vite
 
 ---
 
