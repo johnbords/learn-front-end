@@ -11,7 +11,6 @@ function Header() {
                     <li><a href="/notifications">Notifications</a></li>
                 </ul>
             </nav>
-            <hr />
         </header>
     );
 }
