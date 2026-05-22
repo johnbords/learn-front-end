@@ -13,10 +13,12 @@ function App() {
     <>
       <Header />
 
-      {/* Sample Posts - DELETE THIS LATER */}
-      {posts.map(post => (
-        <PostCard key={post.id} name={post.name} content={post.content} />
-      ))}
+      <main className="pt-5 mt-3">
+        {/* Sample Posts - DELETE THIS LATER */}
+        {posts.map(post => (
+          <PostCard key={post.id} name={post.name} content={post.content} />
+        ))}
+      </main>
       
       <Footer />
     </>
