@@ -2,9 +2,8 @@ import 'bootstrap/dist/css/bootstrap.min.css'
 import { Link, useLocation } from 'react-router-dom';
 
 const links = [
-  { name: "Home", path: "#" },
-  { name: "Posts", path: "#" },
-  { name: "Profile", path: "#" },
+  { name: "Home", path: "/" },
+  { name: "Profile", path: "/profile" },
 ]
 
 function Header() {
@@ -19,7 +18,7 @@ function Header() {
       <nav className="navbar navbar-expand-md navbar-dark fixed-top bg-dark px-3">
 
         {/* Logo */}
-        <Link className="navbar-brand fw-bold" href="#">
+        <Link className="navbar-brand fw-bold" to="#">
           Fakebook
         </Link>
 
@@ -60,7 +59,7 @@ function Header() {
 
                 {links.map((link) => (
                   <li className="nav-item">
-                    <Link className="nav-link" href={link.path}>
+                    <Link className="nav-link" to={link.path}>
                         {link.name}
                     </Link>
                   </li>
