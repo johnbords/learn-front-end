@@ -1,4 +1,5 @@
 import 'bootstrap/dist/css/bootstrap.min.css'
+import { Link } from 'react-router-dom';
 
 const links = [
   { name: "Home", path: "#" },
@@ -12,9 +13,9 @@ function Header() {
       <nav className="navbar navbar-expand-md navbar-dark fixed-top bg-dark px-3">
 
         {/* Logo */}
-        <a className="navbar-brand fw-bold" href="#">
+        <Link className="navbar-brand fw-bold" href="#">
           Fakebook
-        </a>
+        </Link>
 
         <button
           className="navbar-toggler"
@@ -50,9 +51,9 @@ function Header() {
 
             {links.map((link) => (
               <li className="nav-item">
-              <a className="nav-link" href={link.path}>
-                  {link.name}
-                </a>
+                <Link className="nav-link" href={link.path}>
+                    {link.name}
+                </Link>
               </li>
             ))}
           </ul>
