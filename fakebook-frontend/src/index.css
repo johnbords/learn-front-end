@@ -12,6 +12,17 @@ header {
   padding-bottom: 20px;
 }
 
+html,
+body,
+#root {
+  min-height: 100vh;
+  background: linear-gradient(
+  135deg,
+  #60a5fa 0%,
+  #a78bfa 100%
+);
+}
+
 footer {
   padding-top: 20px;
 }
