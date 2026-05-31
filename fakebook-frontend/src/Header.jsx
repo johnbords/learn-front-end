@@ -41,17 +41,21 @@ function Header() {
 
               {/* Search bar */}
               <form className="d-flex flex-grow-1 justify-content-center my-2 my-md-0">
-                <input
-                  className="form-control me-2"
-                  style={{ maxWidth: "400px" }}
-                  type="search"
-                  placeholder="Search"
-                  aria-label="Search"
-                />
+                <div 
+                  className="input-group"
+                  style={{ maxWidth: "450px", width: "100%" }}
+                >
+                  <span className="input-group-text">
+                    <i className="bi bi-search"></i>
+                  </span>
 
-                <button className="btn btn-outline-success" type="submit">
-                  Search
-                </button>
+                  <input
+                    className="form-control"
+                    type="search"
+                    placeholder="Search Fakebook"
+                    aria-label="Search"                  
+                  />
+                </div>
               </form>
 
               {/* Navbar Links */}
