@@ -6,6 +6,12 @@ const links = [
   { name: "Profile", path: "/profile" },
 ]
 
+// MODIFY THIS LATER TO ACTUALLY SEARCH FOR POSTS/USERS
+function handleSearch(e) {
+  e.preventDefault(); // Prevent page refresh
+  console.log("Search button clicked!");
+}
+
 function Header() {
 
   const location = useLocation();
@@ -40,14 +46,14 @@ function Header() {
             <div className="collapse navbar-collapse" id="navbarCollapse">
 
               {/* Search bar */}
-              <form className="d-flex flex-grow-1 justify-content-center my-2 my-md-0">
+              <form className="d-flex flex-grow-1 justify-content-center my-2 my-md-0" onSubmit={handleSearch}>
                 <div 
-                  className="input-group"
+                  className="input-group search-bar"
                   style={{ maxWidth: "450px", width: "100%" }}
                 >
-                  <span className="input-group-text">
+                  <button className="input-group-text" type="submit">
                     <i className="bi bi-search"></i>
-                  </span>
+                  </button>
 
                   <input
                     className="form-control"
