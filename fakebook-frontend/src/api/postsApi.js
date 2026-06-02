@@ -11,5 +11,8 @@ export async function getPosts() {
         throw new Error("Failed to fetch posts");
     }
 
+    // 1. Convert JSON into a JS object
+    // 2. Return the converted data
+    // Summary: Wait for the JSON to be converted, then return it.
     return await response.json();
 }
