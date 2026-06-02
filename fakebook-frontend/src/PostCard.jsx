@@ -1,3 +1,4 @@
+import './PostCard.css';
 import LikeButton from './LikeButton.jsx';
 
 function PostCard({ name, content }) {

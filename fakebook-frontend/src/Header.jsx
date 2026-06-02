@@ -1,4 +1,3 @@
-import 'bootstrap/dist/css/bootstrap.min.css'
 import { Link, useLocation } from 'react-router-dom';
 
 const links = [
