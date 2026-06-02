@@ -9,16 +9,18 @@ import Profile from './Profile.jsx';
 function App() {
   return(
     <>
-      <Header />
+      <div className="d-flex flex-column min-vh-100">
+        <Header />
 
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/signup" element={<Signup />} />
-        <Route path="/profile" element={<Profile />} />
-      </Routes>
-      
-      <Footer />
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/signup" element={<Signup />} />
+          <Route path="/profile" element={<Profile />} />
+        </Routes>
+        
+        <Footer />
+      </div>
     </>
   );
 }
