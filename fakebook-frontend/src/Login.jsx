@@ -39,6 +39,15 @@ function Login() {
                         </button>
                     </form>
 
+                    <button
+                        className="btn btn-dark w-100 mt-3"
+                        onClick={() => {
+                            window.location.href = "http://localhost:3000/auth/github";
+                        }}
+                    >
+                        Login with GitHub
+                    </button>
+
                     <p className="text-center mt-4">
                         No account? <Link to="/signup">Sign up</Link>
                     </p>
