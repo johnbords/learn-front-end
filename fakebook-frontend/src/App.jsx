@@ -5,6 +5,7 @@ import Home from './Home.jsx';
 import Login from './Login.jsx';
 import Signup from './Signup.jsx';
 import Profile from './Profile.jsx';
+import PostDetails from "./pages/PostDetails";
 
 function App() {
   return(
@@ -17,6 +18,7 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<Signup />} />
           <Route path="/profile" element={<Profile />} />
+          <Route path="/posts/:id" element={<PostDetails />} />
         </Routes>
         
         <Footer />
