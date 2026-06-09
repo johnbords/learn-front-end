@@ -7,6 +7,7 @@ import Signup from './Signup.jsx';
 import Profile from './Profile.jsx';
 import PostDetails from "./PostDetails";
 import ProtectedRoute from "./ProtectedRoute";
+import OAuthSuccess from "./OAuthSuccess";
 
 function App() {
   return(
@@ -17,6 +18,7 @@ function App() {
         <Routes>
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<Signup />} />
+          <Route path="/oauth-success" element={<OAuthSuccess />} />
           
           <Route
             path="/"
