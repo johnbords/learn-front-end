@@ -1,18 +1,20 @@
 const API_URL_BACKEND = "http://localhost:3000";
 
-// async tells JS that this function may take some time to complete, 
-// and that it should not block the rest of the code from running 
-// while it waits for the result
 export async function getPosts() {
-    // await means "pause this function here until the operation finishes."
-    const response = await fetch(`${API_URL_BACKEND}/posts`);
+  const token = localStorage.getItem("token");
 
-    if (!response.ok) {
-        throw new Error("Failed to fetch posts");
+  const response = await fetch(
+    "http://localhost:3000/posts",
+    {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
     }
+  );
 
-    // 1. Convert JSON into a JS object
-    // 2. Return the converted data
-    // Summary: Wait for the JSON to be converted, then return it.
-    return await response.json();
+  if (!response.ok) {
+    throw new Error("Failed to fetch posts");
+  }
+
+  return await response.json();
 }
