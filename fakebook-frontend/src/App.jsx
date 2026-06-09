@@ -5,8 +5,8 @@ import Home from './Home.jsx';
 import Login from './Login.jsx';
 import Signup from './Signup.jsx';
 import Profile from './Profile.jsx';
-import PostDetails from "./pages/PostDetails";
-import ProtectedRoute from "./components/ProtectedRoute";
+import PostDetails from "./PostDetails";
+import ProtectedRoute from "./ProtectedRoute";
 
 function App() {
   return(
@@ -15,7 +15,6 @@ function App() {
         <Header />
 
         <Routes>
-          <Route path="/" element={<Home />} />
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<Signup />} />
           
