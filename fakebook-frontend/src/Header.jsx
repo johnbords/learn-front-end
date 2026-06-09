@@ -21,15 +21,15 @@ function Header() {
   return (
     <header>
       <nav className="navbar navbar-expand-md navbar-dark fixed-top bg-dark px-3">
-
-        {/* Logo */}
-        <Link className="navbar-brand fw-bold" to="#">
-          Fakebook
-        </Link>
-
+            <Link className="navbar-brand fw-bold" to="#">
+            </Link>
         {!hideNavbarContent && (
           <>
-        
+            {/* Logo */}
+            <Link className="navbar-brand fw-bold" to="#">
+              Fakebook
+            </Link>
+            
             <button
               className="navbar-toggler"
               type="button"

@@ -15,8 +15,10 @@ function Login() {
         <main className="container" style={{ paddingTop: "100px" }}>
             <div className="row justify-content-center">
                 <div className="col-11 col-sm-8 col-md-6 col-lg-4">
-                    <h1 className="text-center mb-4">Login</h1>
-                    
+                    <h1 className="text-center mb-4">Welcome to Fakebook!</h1>
+                    <p className="login-subtitle">
+                        Log in or sign up to continue.
+                    </p>
                     <form onSubmit={handleSubmit}>
                         <input 
                             className="form-control mb-3"
