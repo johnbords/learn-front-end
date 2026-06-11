@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { getPosts, createPost } from "./api/postsApi";
+import { getPosts, createPost, deletePost } from "./api/postsApi";
 import PostCard from "./PostCard.jsx";
 
 function Home() {
@@ -10,7 +10,7 @@ function Home() {
   const [showPostBox, setShowPostBox] = useState(false);
   const [postBody, setPostBody] = useState("");
   const [showToast, setShowToast] = useState(false);
-
+  
   useEffect(() => {
     async function loadPosts() {
       try {
@@ -24,35 +24,48 @@ function Home() {
     }
 
     loadPosts();
-  }, []);
+    }, []);
 
-async function handlePostSubmit(e) {
-  e.preventDefault();
+    async function handlePostSubmit(e) {
+        e.preventDefault();
 
-  if (!postBody.trim()) return;
+        if (!postBody.trim()) return;
 
-  try {
-    const newPost = await createPost({
-      title: "Post",
-      body: postBody,
-    });
+        try {
+            const newPost = await createPost({
+            title: "Post",
+            body: postBody,
+            });
 
-    setPosts((prevPosts) => [newPost, ...prevPosts]);
+            setPosts((prevPosts) => [newPost, ...prevPosts]);
 
-    setPostBody("");
-    setShowPostBox(false);
+            setPostBody("");
+            setShowPostBox(false);
 
-    setShowToast(true);
+            setShowToast(true);
 
-    setTimeout(() => {
-    setShowToast(false);
-    }, 3000);
+            setTimeout(() => {
+            setShowToast(false);
+            }, 3000);
 
-  } catch (error) {
-    console.error(error);
-    alert("Failed to create post");
-  }
-}
+        } catch (error) {
+            console.error(error);
+            alert("Failed to create post");
+        }
+    }
+
+    async function handleDeletePost(postId) {
+        try {
+            await deletePost(postId);
+
+            setPosts((prevPosts) =>
+            prevPosts.filter((post) => post._id !== postId)
+            );
+        } catch (error) {
+            console.error(error);
+            alert("Failed to delete post");
+        }
+    }
 
   if (loading) return <h2>Loading posts...</h2>;
   if (error) return <h2>{error}</h2>;
@@ -103,9 +116,11 @@ async function handlePostSubmit(e) {
 
       {posts.map((post) => (
         <PostCard
-          key={post._id}
-          name={post.title}
-          content={post.body}
+            key={post._id}
+            name={`${post.user_id?.username}`}
+            content={post.body}
+            post={post}
+            onDelete={handleDeletePost}
         />
       ))}
 

@@ -50,3 +50,23 @@ export async function createPost(postData) {
 
   return await response.json();
 }
+
+export async function deletePost(id) {
+  const token = localStorage.getItem("token");
+
+  const response = await fetch(
+    `${API_URL_BACKEND}/posts/${id}`,
+    {
+      method: "DELETE",
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    }
+  );
+
+  if (!response.ok) {
+    throw new Error("Failed to delete post");
+  }
+
+  return await response.json();
+}
