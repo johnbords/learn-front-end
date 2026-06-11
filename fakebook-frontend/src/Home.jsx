@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { getPosts } from "./api/postsApi";
+import { getPosts, createPost } from "./api/postsApi";
 import PostCard from "./PostCard.jsx";
 
 function Home() {
@@ -9,6 +9,7 @@ function Home() {
 
   const [showPostBox, setShowPostBox] = useState(false);
   const [postBody, setPostBody] = useState("");
+  const [showToast, setShowToast] = useState(false);
 
   useEffect(() => {
     async function loadPosts() {
@@ -25,16 +26,33 @@ function Home() {
     loadPosts();
   }, []);
 
-  function handlePostSubmit(e) {
-    e.preventDefault();
+async function handlePostSubmit(e) {
+  e.preventDefault();
 
-    if (!postBody.trim()) return;
+  if (!postBody.trim()) return;
 
-    console.log("New post:", postBody);
+  try {
+    const newPost = await createPost({
+      title: "Post",
+      body: postBody,
+    });
+
+    setPosts((prevPosts) => [newPost, ...prevPosts]);
 
     setPostBody("");
     setShowPostBox(false);
+
+    setShowToast(true);
+
+    setTimeout(() => {
+    setShowToast(false);
+    }, 3000);
+
+  } catch (error) {
+    console.error(error);
+    alert("Failed to create post");
   }
+}
 
   if (loading) return <h2>Loading posts...</h2>;
   if (error) return <h2>{error}</h2>;
@@ -85,11 +103,35 @@ function Home() {
 
       {posts.map((post) => (
         <PostCard
-          key={post.id}
+          key={post._id}
           name={post.title}
           content={post.body}
         />
       ))}
+
+      {showToast && (
+        <div
+            className="position-fixed bottom-0 end-0 p-3"
+            style={{ zIndex: 1050 }}
+        >
+            <div
+            className="toast show text-bg-success border-0"
+            role="alert"
+            >
+            <div className="d-flex">
+                <div className="toast-body">
+                ✅ Post created successfully!
+                </div>
+
+                <button
+                type="button"
+                className="btn-close btn-close-white me-2 m-auto"
+                onClick={() => setShowToast(false)}
+                />
+            </div>
+            </div>
+        </div>
+        )}
     </main>
   );
 }
