@@ -1,15 +1,34 @@
-import React, { use, useState } from 'react';
+import { useState } from "react";
+import { toggleLike } from "./api/postsApi";
 
-function LikeButton() {
+function LikeButton({ post }) {
+  const currentUser = JSON.parse(localStorage.getItem("user"));
 
-    // useState() - react hook
-    const [likes, setLikes] = useState(0);
+    const alreadyLiked = post.likes?.some(
+    (id) => id.toString() === currentUser?.id
+    );
 
-    return( 
-        // onClick event handler - updates state
-        <button onClick={() => setLikes(likes + 1)}>
-            {/* Conditional rendering; Ternary operator */}
-            Like {likes > 0 ? likes : ""}
+  const [liked, setLiked] = useState(alreadyLiked);
+  const [likes, setLikes] = useState(post.likes?.length || 0);
+
+  async function handleLike() {
+    try {
+      const data = await toggleLike(post._id);
+
+      setLiked(data.liked);
+      setLikes(data.likes);
+    } catch (error) {
+      console.error(error);
+      alert("Failed to like post");
+    }
+  }
+
+    return (
+        <button
+            className={liked ? "btn btn-primary btn-sm" : "btn btn-outline-primary btn-sm"}
+            onClick={handleLike}
+        >
+            {liked ? "Liked" : "Like"}
         </button>
     );
 }

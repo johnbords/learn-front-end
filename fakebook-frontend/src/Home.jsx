@@ -9,7 +9,7 @@ function Home() {
 
   const [showPostBox, setShowPostBox] = useState(false);
   const [postBody, setPostBody] = useState("");
-  const [showToast, setShowToast] = useState(false);
+  const [toast, setToast] = useState(null);
   
   useEffect(() => {
     async function loadPosts() {
@@ -42,10 +42,13 @@ function Home() {
             setPostBody("");
             setShowPostBox(false);
 
-            setShowToast(true);
+            setToast({
+            type: "success",
+            message: "✅ Post created successfully!",
+            });
 
             setTimeout(() => {
-            setShowToast(false);
+            setToast(null);
             }, 3000);
 
         } catch (error) {
@@ -55,16 +58,25 @@ function Home() {
     }
 
     async function handleDeletePost(postId) {
-        try {
-            await deletePost(postId);
+    try {
+        await deletePost(postId);
 
-            setPosts((prevPosts) =>
-            prevPosts.filter((post) => post._id !== postId)
-            );
-        } catch (error) {
-            console.error(error);
-            alert("Failed to delete post");
-        }
+        setPosts((prevPosts) =>
+        prevPosts.filter((post) => post._id !== postId)
+        );
+
+        setToast({
+            type: "danger",
+            message: "🗑️ Post deleted successfully!",
+        });
+
+        setTimeout(() => {
+        setToast(null);
+        }, 3000);
+    } catch (error) {
+        console.error(error);
+        alert("Failed to delete post");
+    }
     }
 
   if (loading) return <h2>Loading posts...</h2>;
@@ -124,29 +136,30 @@ function Home() {
         />
       ))}
 
-      {showToast && (
+    {toast && (
         <div
             className="position-fixed bottom-0 end-0 p-3"
             style={{ zIndex: 1050 }}
         >
             <div
-            className="toast show text-bg-success border-0"
+            className={`toast show text-bg-${toast.type} border-0`}
             role="alert"
             >
             <div className="d-flex">
                 <div className="toast-body">
-                ✅ Post created successfully!
+                {toast.message}
                 </div>
 
                 <button
                 type="button"
                 className="btn-close btn-close-white me-2 m-auto"
-                onClick={() => setShowToast(false)}
+                onClick={() => setToast(null)}
                 />
             </div>
             </div>
         </div>
-        )}
+    )}
+
     </main>
   );
 }

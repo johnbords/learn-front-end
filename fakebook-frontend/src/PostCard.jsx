@@ -33,7 +33,7 @@ console.log("Post User:", post.user_id);
           alignItems: "center",
         }}
       >
-        <LikeButton />
+        <LikeButton post={post} />
 
         {(isOwner || isAdmin) && (
           <button

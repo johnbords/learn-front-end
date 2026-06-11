@@ -70,3 +70,20 @@ export async function deletePost(id) {
 
   return await response.json();
 }
+
+export async function toggleLike(postId) {
+  const token = localStorage.getItem("token");
+
+  const response = await fetch(`http://localhost:3000/posts/${postId}/like`, {
+    method: "POST",
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
+
+  if (!response.ok) {
+    throw new Error("Failed to like post");
+  }
+
+  return await response.json();
+}
