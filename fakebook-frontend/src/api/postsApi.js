@@ -31,3 +31,22 @@ export async function getPostById(id) {
 
   return await response.json();
 }
+
+export async function createPost(postData) {
+  const token = localStorage.getItem("token");
+
+  const response = await fetch(`${API_URL_BACKEND}/posts`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`,
+    },
+    body: JSON.stringify(postData),
+  });
+
+  if (!response.ok) {
+    throw new Error("Failed to create post");
+  }
+
+  return await response.json();
+}
