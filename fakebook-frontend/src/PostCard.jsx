@@ -1,5 +1,6 @@
 import "./PostCard.css";
 import LikeButton from "./LikeButton.jsx";
+import { Link } from "react-router-dom";
 
 function PostCard({
   name,
@@ -10,9 +11,6 @@ function PostCard({
   const currentUser = JSON.parse(
     localStorage.getItem("user")
   );
-
-console.log("Current User:", currentUser);
-console.log("Post User:", post.user_id);
 
   const isOwner =
     currentUser?.id === post.user_id?._id;
@@ -31,9 +29,17 @@ console.log("Post User:", post.user_id);
           display: "flex",
           gap: "10px",
           alignItems: "center",
+          flexWrap: "wrap",
         }}
       >
         <LikeButton post={post} />
+
+        <Link
+          to={`/posts/${post._id}`}
+          className="btn btn-primary btn-sm"
+        >
+          View Details
+        </Link>
 
         {(isOwner || isAdmin) && (
           <button

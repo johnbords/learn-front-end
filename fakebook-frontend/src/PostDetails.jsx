@@ -48,23 +48,33 @@ function PostDetails() {
   }
 
   return (
-    <main className="container mt-4">
-      <Link to="/" className="btn btn-secondary mb-3">
-        Back to Posts
-      </Link>
+    <main className="container py-5">
+      <div className="row justify-content-center">
+        <div className="col-12 col-md-10 col-lg-8">
+          <div className="mx-5 mt-4 mb-4">
+            <Link to="/" className="btn btn-dark">
+              ← Back to Posts
+            </Link>
+          </div>
 
-      <div className="card">
-        <div className="card-body">
-          <h1 className="card-title">{post.title}</h1>
-
-          <p className="card-text">{post.body}</p>
-
-          {post.user_id && (
-            <p className="text-muted">
-              Posted by:{" "}
-              {post.user_id.username || post.user_id.name || "Unknown user"}
+          <div className="post-card pt-5 mb-5">
+            <p className="text-muted mb-2">
+              Posted by{" "}
+              <strong>
+                {post.user_id?.username ||
+                  post.user_id?.name ||
+                  "Unknown user"}
+              </strong>
             </p>
-          )}
+
+            <p className="text-muted small mb-4">
+              {new Date(post.createdAt).toLocaleString()}
+            </p>
+
+            <p className="fs-5 lh-lg mb-0">
+              {post.body}
+            </p>
+          </div>
         </div>
       </div>
     </main>
