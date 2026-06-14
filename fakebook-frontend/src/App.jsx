@@ -8,6 +8,7 @@ import Profile from './Profile.jsx';
 import PostDetails from "./PostDetails";
 import ProtectedRoute from "./ProtectedRoute";
 import OAuthSuccess from "./OAuthSuccess";
+import GuestRoute from "./GuestRoute";
 
 function App() {
   return(
@@ -16,8 +17,23 @@ function App() {
         <Header />
 
         <Routes>
-          <Route path="/login" element={<Login />} />
-          <Route path="/signup" element={<Signup />} />
+          <Route
+            path="/login"
+            element={
+              <GuestRoute>
+                <Login />
+              </GuestRoute>
+            }
+          />
+
+          <Route
+            path="/signup"
+            element={
+              <GuestRoute>
+                <Signup />
+              </GuestRoute>
+            }
+          />
           <Route path="/oauth-success" element={<OAuthSuccess />} />
           
           <Route
