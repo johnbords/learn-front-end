@@ -10,6 +10,11 @@ import ProtectedRoute from "./ProtectedRoute";
 import OAuthSuccess from "./OAuthSuccess";
 import GuestRoute from "./GuestRoute";
 import EditPost from "./EditPost";
+import Comments from "./Comments";
+import CommentDetails from "./CommentDetails";
+import CreateComment from "./CreateComment";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function App() {
   return(
@@ -73,8 +78,37 @@ function App() {
             }
           />
 
+          <Route
+            path="/comments"
+            element={
+              <ProtectedRoute>
+                <Comments />
+              </ProtectedRoute>
+            }
+          />
+
+          <Route
+            path="/comments/create"
+            element={
+              <ProtectedRoute>
+                <CreateComment />
+              </ProtectedRoute>
+            }
+          />
+
+          <Route
+            path="/comments/:id"
+            element={
+              <ProtectedRoute>
+                <CommentDetails />
+              </ProtectedRoute>
+            }
+          />
+
         </Routes>
-        
+
+        <ToastContainer position="top-right" autoClose={2000} />
+
         <Footer />
       </div>
     </>
