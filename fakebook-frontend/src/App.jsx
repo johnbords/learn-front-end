@@ -9,6 +9,7 @@ import PostDetails from "./PostDetails";
 import ProtectedRoute from "./ProtectedRoute";
 import OAuthSuccess from "./OAuthSuccess";
 import GuestRoute from "./GuestRoute";
+import EditPost from "./EditPost";
 
 function App() {
   return(
@@ -59,6 +60,15 @@ function App() {
             element={
               <ProtectedRoute>
                 <Profile />
+              </ProtectedRoute>
+            }
+          />
+
+          <Route
+            path="/posts/:id/edit"
+            element={
+              <ProtectedRoute>
+                <EditPost />
               </ProtectedRoute>
             }
           />

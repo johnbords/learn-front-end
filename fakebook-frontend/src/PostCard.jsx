@@ -41,6 +41,15 @@ function PostCard({
           View Details
         </Link>
 
+        {isOwner && (
+          <Link
+            to={`/posts/${post._id}/edit`}
+            className="btn btn-warning btn-sm"
+          >
+            Edit
+          </Link>
+        )}
+
         {(isOwner || isAdmin) && (
           <button
             className="btn btn-danger btn-sm"
